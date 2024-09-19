@@ -1,9 +1,10 @@
 {
-  "name": "consumer_notes_app",
+  "name": "consumer_open_music",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "consumer": "node src/consumer.js"
+    "consumer": "node src/consumer.js",
+    "lint": "eslint ./src"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +15,10 @@
     "dotenv": "^16.4.5",
     "nodemailer": "^6.9.15",
     "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.52.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.0"
   }
 }

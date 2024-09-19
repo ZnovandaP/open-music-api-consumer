@@ -11,7 +11,7 @@ class MailSender {
       },
     });
   }
- 
+
   sendEmail(targetEmail, content) {
     const message = {
       from: 'Open Music Apps',

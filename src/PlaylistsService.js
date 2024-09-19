@@ -1,13 +1,13 @@
-const { Pool } = require("pg");
+const { Pool } = require('pg');
 
 class PlaylistsService {
   constructor() {
     this._pool = new Pool();
   }
 
-  async getSongInPlaylist(playlist_id) {
+  async getSongInPlaylist(playlistId) {
     const query = {
-        text: `
+      text: `
         SELECT p.id, p.name,
         COALESCE(
           array_agg(
@@ -25,26 +25,23 @@ class PlaylistsService {
         WHERE ps.playlist_id = $1
         GROUP BY p.id, p.name;
         `,
-        values: [playlist_id],
-      };
+      values: [playlistId],
+    };
     const result = await this._pool.query(query);
     return result.rows[0];
   }
 
   async verifyPlaylistAccessIsOwner(playlistId, ownerId) {
     const query = {
-      text: "SELECT * FROM playlists WHERE id = $1 AND owner = $2",
+      text: 'SELECT * FROM playlists WHERE id = $1 AND owner = $2',
       values: [playlistId, ownerId],
-    }
+    };
 
     const result = await this._pool.query(query);
 
     if (!result.rows.length) {
       console.log('Playlist tidak ditemukan!');
-      return
     }
-    
-    return result.rows[0].id;
   }
 }
 
